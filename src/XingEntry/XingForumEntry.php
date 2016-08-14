@@ -45,24 +45,24 @@ class XingForumEntry extends AbstractEntry implements RecommendationInterface
     protected function validateBody(array $body)
     {
         Validator::checkRequiredParametersAreSet(
-                $body,
-                array('content', 'title')
-               );
+            $body,
+            array('content', 'title')
+        );
         
         if (isset($body['image'])) {
             Validator::checkRequiredParametersAreSet(
-                    $body['image'],
-                    array('file_name', 'mime_type', 'content')
+                $body['image'],
+                array('file_name', 'mime_type', 'content')
             );
             Validator::validateValue(
-                    $body['image']['mime_type'],
-                    self::$validImageMimeTypes
+                $body['image']['mime_type'],
+                self::$validImageMimeTypes
             );
         }
         
         Validator::validateMessageLength(
-                $body['content'],
-                self::MAX_LENGTH_OF_MESSAGE
+            $body['content'],
+            self::MAX_LENGTH_OF_MESSAGE
         );
     }
     
