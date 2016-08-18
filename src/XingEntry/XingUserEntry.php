@@ -14,9 +14,7 @@ use Publisher\Helper\Validator;
 class XingUserEntry extends AbstractEntry implements RecommendationInterface
 {
     
-    /* I didn't find the actual value in the documentation,
-     * so I used the value of XingForumEntry for now.
-     */
+    // source: html source code
     const MAX_LENGTH_OF_MESSAGE = 420;
     
     protected function defineRequestProperties()
@@ -50,7 +48,7 @@ class XingUserEntry extends AbstractEntry implements RecommendationInterface
         string $message,
         string $url = '',
         string $title = '',
-        int $date = null
+        $date = null
     ) {
         $fullMessage = empty($title) ? $message : $title."\n".$message;
         $fullMessage .= empty($url) ? '' : "\n".$url;

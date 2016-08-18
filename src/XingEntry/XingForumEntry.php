@@ -12,7 +12,11 @@ use Publisher\Helper\Validator;
 class XingForumEntry extends AbstractEntry implements RecommendationInterface
 {
     
-    const MAX_LENGTH_OF_MESSAGE = 420;
+    // source: html source code
+    const MAX_LENGTH_OF_TITLE = 254;
+    // source: html source code
+    const MAX_LENGTH_OF_MESSAGE = 9999;
+    
     static $validImageMimeTypes = array(
         'image/jpeg',
         'image/png',
@@ -61,6 +65,11 @@ class XingForumEntry extends AbstractEntry implements RecommendationInterface
         }
         
         Validator::validateMessageLength(
+            $body['title'],
+            self::MAX_LENGTH_OF_TITLE
+        );
+        
+        Validator::validateMessageLength(
             $body['content'],
             self::MAX_LENGTH_OF_MESSAGE
         );
@@ -80,7 +89,7 @@ class XingForumEntry extends AbstractEntry implements RecommendationInterface
         string $message,
         string $url = '',
         string $title = '',
-        int $date = null
+        $date = null
     ) {
         $body = array();
         $body['title'] = $title;
