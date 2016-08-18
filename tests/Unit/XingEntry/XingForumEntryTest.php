@@ -7,7 +7,7 @@ use Unit\Publisher\Entry\EntryTest;
 class XingForumEntryTest extends EntryTest
 {
     
-    protected function getEntryName()
+    protected function getEntryClass()
     {
         return 'Publisher\\Entry\\Xing\\XingForumEntry';
     }
