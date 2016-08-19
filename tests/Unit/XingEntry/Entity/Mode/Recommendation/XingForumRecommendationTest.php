@@ -14,8 +14,8 @@ class XingForumRecommendationTest extends AbstractRecommendationTest
         return array(
             array(
                 array(
-                    'message' => "abcdefghijklmnopqrstToday Unit 123",
-                    'title' => "Today Unit 123",
+                    'message' => 'abcdefghijklmnopqrstToday Unit 123',
+                    'title' => 'Today Unit 123',
                     'url' => 'http://www.example.com',
                     'date' => null
                 )
@@ -34,12 +34,21 @@ class XingForumRecommendationTest extends AbstractRecommendationTest
     public function getInvalidData()
     {
         return array(
-            array(// invalid since Xing doesn't support sheduled publishing per API
+            array(// invalid since Xing doesn't support scheduled publishing per API
                 array(
-                    'message' => "Today Unit 123",
-                    'title' => "Testing",
+                    'message' => 'Today Unit 123',
+                    'title' => 'Testing',
                     'url' => 'http://www.example.com',
                     'date' => 946684800 // invalid
+                ),
+                1
+            ),
+            array(// invalid since a Xing forum post requires a title
+                array(
+                    'message' => 'Today Unit 123',
+                    'title' => '', // invalid
+                    'url' => 'http://www.example.com',
+                    'date' => null
                 ),
                 1
             )
@@ -62,10 +71,10 @@ class XingForumRecommendationTest extends AbstractRecommendationTest
             $message .= 'c';
         }
         
-        $title = '';
+        $title = 'c';
         //add one additional character so we exceed maximum title length
         for ($i = 0; $i < XingForumEntry::MAX_LENGTH_OF_TITLE+1; $i++) {
-            $title .= 'c';
+            $title .= '';
         }
         
         return array(

@@ -34,7 +34,7 @@ class XingUserRecommendationTest extends AbstractRecommendationTest
     public function getInvalidData()
     {
         return array(
-            array(// invalid since Xing doesn't support sheduled publishing per API
+            array(// invalid since Xing doesn't support scheduled publishing per API
                 array(
                     'message' => "Today Unit 123",
                     'title' => "Testing",
