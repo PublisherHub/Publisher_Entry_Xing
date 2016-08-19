@@ -3,11 +3,22 @@
 namespace Publisher\Entry\Xing\Entity\Mode\Recommendation;
 
 use Publisher\Mode\Recommendation\Entity\AbstractRecommendation;
-use Publisher\Entry\Xing\XingForumEntry;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
+use Publisher\Entry\Xing\XingForumEntry;
 
 class XingForumRecommendation extends AbstractRecommendation
 {
+    
+    public static function loadValidatorMetadata(ClassMetadata $metadata)
+    {
+        parent::loadValidatorMetadata($metadata);
+        parent::addDefaultConstraints($metadata);
+        parent::addScheduleNotSupportedConstraint($metadata);
+        // a post in a XING forum requires a title 
+        $metadata->addPropertyConstraint('title', new Assert\NotBlank());
+    }
     
     /**
      * @{inheritdoc}
@@ -16,26 +27,21 @@ class XingForumRecommendation extends AbstractRecommendation
         ExecutionContextInterface $context,
         $payload
     ) {
-        // maximum, allowed number of characters
-        $max = $this->getMaxLengthOfMessage();
-        
-        $message = $this->createCompleteMessage();
-        
-        if (strlen($message) > $max) {
-            $context
-                ->buildViolation("Message and URL combined shouldn't exceed $max characters.")
-                ->atPath('message')
-                ->addViolation();
-        }
+        parent::validateMessageLength($context, $payload);
         
         $max = XingForumEntry::MAX_LENGTH_OF_TITLE;
         
-        if (strlen('title') > $max) {
+        if (strlen($this->title) > $max) {
             $context
                 ->buildViolation("Title shouldn't exceed $max characters.")
                 ->atPath('title')
                 ->addViolation();
         }
+    }
+    
+    protected function getMaxLengthViolationMessage(int $max)
+    {
+        return "Message and URL combined shouldn't exceed $max characters.";
     }
     
     /**
