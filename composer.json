@@ -12,8 +12,8 @@
     "require": {
         "php": ">=7.0.0",
         "publisher/publisher" : "dev-master",
-        "symfony/validator": "^3.1",
-        "publisher/recommendation" : "dev-master"
+        "publisher/recommendation" : "dev-master",
+        "symfony/validator": "^3.1"
     },
     "autoload": {
         "psr-4": {
