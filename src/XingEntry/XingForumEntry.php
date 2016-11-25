@@ -3,13 +3,12 @@
 namespace Publisher\Entry\Xing;
 
 use Publisher\Entry\AbstractEntry;
-use Publisher\Mode\Recommendation\RecommendationInterface;
 use Publisher\Helper\Validator;
 
 /**
  * @link https://dev.xing.com/docs/post/groups/forums/:forum_id/posts
  */
-class XingForumEntry extends AbstractEntry implements RecommendationInterface
+class XingForumEntry extends AbstractEntry
 {
     
     // source: html source code
@@ -81,22 +80,6 @@ class XingForumEntry extends AbstractEntry implements RecommendationInterface
     {
         $object = json_decode($response);
         return (isset($object->id));
-    }
-    
-    // Implementation of RecommendationInterface
-    
-    public function setRecommendationParameters(
-        string $message,
-        string $url = '',
-        string $title = '',
-        $date = null
-    ) {
-        $body = array();
-        $body['title'] = $title;
-        
-        $body['content'] = empty($url) ? $message : $message."\n".$url;
-        
-        $this->setBody($body);
     }
     
 }

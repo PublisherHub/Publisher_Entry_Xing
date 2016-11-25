@@ -3,7 +3,6 @@
 namespace Publisher\Entry\Xing;
 
 use Publisher\Entry\AbstractEntry;
-use Publisher\Mode\Recommendation\RecommendationInterface;
 use Publisher\Helper\Validator;
 
 /**
@@ -11,7 +10,7 @@ use Publisher\Helper\Validator;
  * 
  * Publish will return "Status update has been posted" it was successful.
  */
-class XingUserEntry extends AbstractEntry implements RecommendationInterface
+class XingUserEntry extends AbstractEntry
 {
     
     // source: html source code
@@ -40,22 +39,6 @@ class XingUserEntry extends AbstractEntry implements RecommendationInterface
     public static function succeeded($response)
     {
         return ($response === 'Status update has been posted');
-    }
-    
-    // Implementation of RecommendationInterface
-    
-    public function setRecommendationParameters(
-        string $message,
-        string $url = '',
-        string $title = '',
-        $date = null
-    ) {
-        $fullMessage = empty($title) ? $message : $title."\n".$message;
-        $fullMessage .= empty($url) ? '' : "\n".$url;
-        
-        $this->setBody(array(
-            'message' => $fullMessage
-        ));
     }
     
 }
