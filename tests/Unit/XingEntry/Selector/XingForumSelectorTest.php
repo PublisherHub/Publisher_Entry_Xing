@@ -24,8 +24,8 @@ class XingForumSelectorTest extends AbstractSelectorTest
     public function testAddGroupSelection()
     {
         $selections = $this->getUpdatedSelection(
-                array(),
-                $this->getShortenedResponseData('groups')
+            array(),
+            $this->getShortenedResponseData('groups')
         );
         
         $expectedChoices = array('foo' => '123', 'bar' => '321');
@@ -42,8 +42,8 @@ class XingForumSelectorTest extends AbstractSelectorTest
     public function testAddForumSelections()
     {
         $selections = $this->getUpdatedSelection(
-                array('group_id' => '123'),
-                $this->getShortenedResponseData('forums')
+            array('group_id' => '123'),
+            $this->getShortenedResponseData('forums')
         );
         
         $expectedChoices = array('foo' => '123', 'bar' => '321');
@@ -69,8 +69,8 @@ class XingForumSelectorTest extends AbstractSelectorTest
     }
     
     protected function getSelector(
-            RequestorInterface $requestor,
-            StorageInterface $storage
+        RequestorInterface $requestor,
+        StorageInterface $storage
     ) {
         return new XingForumSelector($requestor, $storage);
     }
