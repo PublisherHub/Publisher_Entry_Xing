@@ -13,7 +13,7 @@ Edit your `composer.json` and add:
 ```json
 {
     "require": {
-        "publisher/xing-entry": "dev-master"
+        "publisher/entry_xing": "dev-master"
     }
 }
 ```
