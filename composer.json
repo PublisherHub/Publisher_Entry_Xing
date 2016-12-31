@@ -1,7 +1,7 @@
 {
-    "name": "publisher/xing-entry",
+    "name": "publisher/entry_xing",
     "description": "Entries for publisher/publisher to post on Xing.",
-    "keywords": ["publisher", "entry", "twitter", "publish", "post", "oauth"],
+    "keywords": ["publisher", "entry", "xing", "publish", "post", "oauth"],
     "license": "MIT",
     "authors": [
         {
