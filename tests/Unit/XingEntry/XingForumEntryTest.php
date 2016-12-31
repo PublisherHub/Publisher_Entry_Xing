@@ -76,8 +76,8 @@ class XingForumEntryTest extends EntryTest
         $this->entry = $this->getEntry($body, $parameters);
         
         $this->assertEquals(
-                '/groups/forums/foo/posts',
-                $this->entry->getRequest()->getPath()
+            '/groups/forums/foo/posts',
+            $this->entry->getRequest()->getPath()
         );
     }
     

@@ -2,10 +2,7 @@
 Provides Entries for publisher/publisher to post to Xing.
 
 XingUserEntry: post a status message as a user.
--> implements publisher/recommendation
-
 XingForumEntry: post a message in a forum as a user.
--> implements publisher/recommendation
 
 
 # Installation
